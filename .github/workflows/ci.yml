@@ -56,8 +56,8 @@ jobs:
     - name: List files in the allure-results directory
       run: ls -la allure-results
       
-    - name: List files in the restfulbookers/restfulbookers directory
-      run: ls -la restfulbookers/restfulbookers/allure-results
+    - name: List all files to locate allure-results
+      run: find . -name "allure-results"
 
     # Generowanie raportu Allure
     - name: Generate Allure Report
