@@ -5,9 +5,11 @@ on:
   push:
     branches:
       - main
+      - restfulframework-allure
   pull_request:
     branches:
       - main
+      - restfulframework-allure
 
 jobs:
   build:
