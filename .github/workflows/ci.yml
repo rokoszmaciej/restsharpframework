@@ -31,7 +31,7 @@ jobs:
       run: dotnet build restfulbookers/restfulbookers/restfulbookers.csproj --configuration Release --no-restore
 
     - name: Run tests and generate test results
-      run: dotnet test restfulbookers/restfulbookers/restfulbookers.csproj --logger "nunit;LogFilePath=restfulbookers/restfulbookers/TestResults.xml" --no-restore --verbosity normal
+      run: dotnet test restfulbookers/restfulbookers/restfulbookers.csproj --logger "nunit;LogFilePath=TestResults.xml" --no-restore --verbosity normal
 
     - name: List files in the restfulbookers/restfulbookers directory
       run: ls -la restfulbookers/restfulbookers
