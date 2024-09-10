@@ -33,11 +33,15 @@ jobs:
     - name: Run tests and generate test results
       run: dotnet test restfulbookers/restfulbookers/restfulbookers.csproj --logger "nunit;LogFilePath=TestResults.xml" --no-restore --verbosity normal
 
+  # Sprawdź, gdzie są generowane pliki
+    - name: List files in the current directory
+      run: ls -la
+      
     - name: Upload test results
       uses: actions/upload-artifact@v3
       with:
         name: test-results
-        path: TestResults.xml
+        path: restfulbookers/TestResults.xml
 
     # Instalacja Allure za pomocą repozytorium Maven Central
     - name: Install Allure
