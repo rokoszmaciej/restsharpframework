@@ -1,3 +1,6 @@
+using Allure.Net.Commons;
+using Allure.NUnit;
+using Allure.NUnit.Attributes;
 using RestfulBookerTestFramework.Builders;
 using RestfulBookerTestFramework.Configurations;
 using RestfulBookerTestFramework.Controllers;
@@ -9,6 +12,8 @@ using System.Net;
 namespace RestfulBookerTestFramework.Tests
 {
     [TestFixture]
+    [AllureNUnit]
+    [AllureSuite("Auth Tests")]
     public class AuthTests
     {
         private AuthController _authController;
@@ -21,6 +26,10 @@ namespace RestfulBookerTestFramework.Tests
         }
 
         [Test]
+        [AllureSeverity(SeverityLevel.normal)]
+        [AllureDescription("Checking if token is proper generated")]
+        [AllureStep("Create valid token")]
+        [AllureTag("Smoke")]
         public async Task CreateValidToken()
         {
 

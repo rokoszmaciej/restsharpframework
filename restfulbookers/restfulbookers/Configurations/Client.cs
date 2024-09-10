@@ -1,4 +1,6 @@
-﻿using RestfulBookerTestFramework.Configurations;
+﻿using NUnit.Framework.Internal;
+using RestfulBookerTestFramework.Configurations;
+using RestfulBookerTestFramework.Utilities.Allure;
 using RestSharp;
 
 namespace RestfulBookerTestFramework.Core
@@ -15,7 +17,9 @@ namespace RestfulBookerTestFramework.Core
 
         public async Task<RestResponse> ExecuteRequest(RestRequest request)
         {
+            AllureUtilities.LoginRequestToAllure(request);
             var response = await RestClient.ExecuteAsync(request);
+            AllureUtilities.LoginResponseToAllure(response);
             return response;
         }
     }

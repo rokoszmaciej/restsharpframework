@@ -1,6 +1,7 @@
 ﻿using RestfulBookerTestFramework.Builders;
 using RestfulBookerTestFramework.Core;
 using RestfulBookerTestFramework.Models.Auth.Request;
+using RestfulBookerTestFramework.Utilities.Allure;
 using RestSharp;
 
 namespace RestfulBookerTestFramework.Controllers
@@ -15,6 +16,7 @@ namespace RestfulBookerTestFramework.Controllers
 
         public async Task<RestResponse> CreateToken(AuthorizationModel requestBody)
         {
+            AllureUtilities.StartStepExecution(nameof(CreateToken));
             var request = new RestRequestBuilder()
                 .WithResource(_path)
                 .WithMethod(Method.Post)
