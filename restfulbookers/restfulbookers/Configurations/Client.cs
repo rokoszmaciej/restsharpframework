@@ -1,7 +1,4 @@
-﻿using Allure.Net.Commons;
-using RestfulBookerTestFramework.Configurations;
-using RestfulBookerTestFramework.Utilities;
-using RestfulBookerTestFramework.Utilities.Allure;
+﻿using RestfulBookerTestFramework.Configurations;
 using RestSharp;
 
 namespace RestfulBookerTestFramework.Core
@@ -18,10 +15,7 @@ namespace RestfulBookerTestFramework.Core
 
         public async Task<RestResponse> ExecuteRequest(RestRequest request)
         {
-            Logger.LogRequestDetails(request);
-            AllureUtilities.LoginRequestToAllure(request);
             var response = await RestClient.ExecuteAsync(request);
-            AllureUtilities.LoginResponseToAllure(response);
             return response;
         }
     }
