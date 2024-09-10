@@ -5,9 +5,11 @@ on:
   push:
     branches:
       - main
+      - restfulframework-allure
   pull_request:
     branches:
       - main
+      - restfulframework-allure
 
 jobs:
   build:
@@ -30,3 +32,25 @@ jobs:
 
     - name: Run tests
       run: dotnet test restfulbookers/restfulbookers/restfulbookers.csproj --no-restore --verbosity normal
+
+    - name: Run tests and generate Allure results
+      run: dotnet test restfulbookers/restfulbookers/restfulbookers.csproj --logger "Allure" --no-restore --verbosity normal
+
+    - name: Upload Allure results
+      uses: actions/upload-artifact@v3
+      with:
+        name: allure-results
+        path: allure-results
+
+    - name: Generate Allure Report
+      uses: actions/setup-allurectl@v2
+      with:
+        results-dir: allure-results
+        report-dir: allure-report
+        download-results: false
+
+    - name: Upload Allure Report
+      uses: actions/upload-artifact@v3
+      with:
+        name: allure-report
+        path: allure-report
