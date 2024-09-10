@@ -31,7 +31,7 @@ jobs:
       run: dotnet build restfulbookers/restfulbookers/restfulbookers.csproj --configuration Release --no-restore
 
     - name: Run tests and generate test results
-      run: dotnet test restfulbookers/restfulbookers/restfulbookers.csproj --logger "nunit;LogFilePath=TestResults.xml" --no-restore --verbosity normal
+      run: dotnet test restfulbookers/restfulbookers/restfulbookers.csproj --logger "nunit;LogFilePath=restfulbookers/TestResults.xml" --no-restore --verbosity normal
 
   # Sprawdź, gdzie są generowane pliki
     - name: List files in the current directory
@@ -54,7 +54,7 @@ jobs:
 
     # Generowanie raportu Allure
     - name: Generate Allure Report
-      run: allure generate TestResults.xml --clean -o allure-report
+      run: allure generate restfulbookers/TestResults.xml --clean -o allure-report
 
     - name: Upload Allure Report
       uses: actions/upload-artifact@v3
