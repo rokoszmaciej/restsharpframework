@@ -1,0 +1,32 @@
+name: .NET Build and Test
+
+# Uruchamianie pipeline'a na push lub pull request do gałęzi main
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest  # Można też wybrać windows-latest, ale ubuntu jest szybsze
+
+    steps:
+    - name: Checkout the repository
+      uses: actions/checkout@v3
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '8.x'  # Zmieniaj na odpowiednią wersję .NET, np. '6.x' jeśli używasz .NET 6
+
+    - name: Restore dependencies
+      run: dotnet restore
+
+    - name: Build the solution
+      run: dotnet build --configuration Release --no-restore
+
+    - name: Run tests
+      run: dotnet test --no-restore --verbosity normal
