@@ -37,7 +37,7 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: test-results
-        path: restfulbookers/restfulbookers/TestResults.xml
+        path: TestResults.xml
 
     # Instalacja Allure za pomocą repozytorium Maven Central
     - name: Install Allure
@@ -50,7 +50,7 @@ jobs:
 
     # Generowanie raportu Allure
     - name: Generate Allure Report
-      run: allure generate restfulbookers/restfulbookers/TestResults.xml --clean -o allure-report
+      run: allure generate TestResults.xml --clean -o allure-report
 
     - name: Upload Allure Report
       uses: actions/upload-artifact@v3
