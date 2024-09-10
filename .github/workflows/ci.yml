@@ -23,10 +23,10 @@ jobs:
         dotnet-version: '8.x'  # Zmieniaj na odpowiednią wersję .NET, np. '6.x' jeśli używasz .NET 6
 
     - name: Restore dependencies
-      run: dotnet restore
+      run: dotnet restore restfulbookers/restfulbookers/restfulbookers.csproj
 
     - name: Build the solution
-      run: dotnet build --configuration Release --no-restore
+      run: dotnet build restfulbookers/restfulbookers/restfulbookers.csproj --configuration Release --no-restore
 
     - name: Run tests
-      run: dotnet test --no-restore --verbosity normal
+      run: dotnet test restfulbookers/restfulbookers/restfulbookers.csproj --no-restore --verbosity normal
