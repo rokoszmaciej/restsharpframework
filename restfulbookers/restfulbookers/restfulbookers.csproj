@@ -32,10 +32,4 @@
     </None>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Reports\allure-report\" />
-    <Folder Include="Reports\allure-results\" />
-    <Folder Include="Reports\test-results\" />
-  </ItemGroup>
-
 </Project>
