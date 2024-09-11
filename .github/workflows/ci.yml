@@ -34,6 +34,10 @@ jobs:
     - name: Run tests and generate NUnit XML results
       run: dotnet test restfulbookers/restfulbookers/restfulbookers.csproj --logger "nunit;LogFilePath=restfulbookers/restfulbookers/bin/Debug/net8.0/allure-results/TestResults.xml"
 
+    - name: List all files after tests
+      run: find . -name "*.xml" -o -name "*.trx" -o -name "*.json"
+
+
     # Step 6: List the files in allure-results for debugging
     - name: List files in allure-results directory
       run: ls -la restfulbookers/restfulbookers/bin/Debug/net8.0/allure-results
