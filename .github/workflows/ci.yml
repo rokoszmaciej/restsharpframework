@@ -43,7 +43,7 @@ jobs:
     
     steps:
     - name: Run tests and generate NUnit XML results
-      run: dotnet test ${{ env.PROJECT_PATH }}/restfulbookers.csproj --logger "nunit;LogFilePath=${{ env.REPO_PATH_FOR_ALLURE }}/allure-results/TestResults.xml" --verbosity detailed
+      run: dotnet test ${{ env.PROJECT_PATH }}/restfulbookers.csproj --logger "nunit;LogFilePath=bin/Debug/net8.0/allure-results/TestResults.xml" --verbosity detailed
 
   allure-report:
     runs-on: ubuntu-latest
