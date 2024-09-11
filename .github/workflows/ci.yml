@@ -20,7 +20,7 @@ env:
   
 jobs:
 
-  build:
+  build_and_execute_tests:
     runs-on: ubuntu-latest
     
     steps:
@@ -40,7 +40,11 @@ jobs:
 
     - name: Run tests and generate NUnit XML results
       run: dotnet test ${{ env.PROJECT_PATH }}/restfulbookers.csproj --logger "nunit;LogFilePath=bin/Debug/net8.0/allure-results/TestResults.xml" --verbosity detailed
-
+      
+  generate_allure_report:
+    runs-on: ubuntu-latest
+    
+    steps:
     - name: Install Allure
       run: |
         sudo apt-get update
