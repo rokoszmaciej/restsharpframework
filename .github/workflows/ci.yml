@@ -13,7 +13,7 @@ on:
 
 
 env:
-  DOTNET_VERSION: '8.0'
+  DOTNET_VERSION: '8.x'
   PROJECT_PATH: 'restfulbookers/restfulbookers'
   REPO_PATH_FOR_ALLURE: 'bin/Debug/net8.0/'
   
