@@ -32,18 +32,6 @@ jobs:
 
     - name: Run tests and generate NUnit XML results
       run: dotnet test restfulbookers/restfulbookers/restfulbookers.csproj --logger "nunit;LogFilePath=restfulbookers/restfulbookers/bin/Debug/net8.0/allure-results/TestResults.xml"
-
-      
-    - name: List files in the restfulbookers/restfulbookers directory
-      run: ls -la restfulbookers/restfulbookers
-      
-    - name: Copy NUnit XML results to allure-results
-      run: |
-        mkdir -p allure-results
-        cp restfulbookers/restfulbookers/TestResults.xml restfulbookers/restfulbookers/bin/Debug/net8.0/allure-results/
-
-    - name: List files in the allure-results directory
-      run: ls -la restfulbookers/restfulbookers/bin/Debug/net8.0/allure-results
         
     # Instalacja Allure za pomocą repozytorium Maven Central
     - name: Install Allure
