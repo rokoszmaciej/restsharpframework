@@ -1,1 +1,1 @@
-[{"uid":"2f5a48543cfae0e1","name":"CreateValidToken","time":{"start":1726059125085,"stop":1726059125468,"duration":383},"status":"passed","severity":"normal"}]
+[{"uid":"23df3cab04f27b36","name":"HealthCheck","time":{"start":1726060578409,"stop":1726060578691,"duration":282},"status":"passed","severity":"normal"},{"uid":"83329ef9896786e2","name":"CreateValidToken","time":{"start":1726060578722,"stop":1726060578799,"duration":77},"status":"passed","severity":"normal"}]
