@@ -1,4 +1,5 @@
-﻿using RestSharp;
+﻿using RestfulBookerTestFramework.Helpers;
+using RestSharp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,6 +32,13 @@ namespace RestfulBookerTestFramework.Builders
         public RestRequestBuilder WithHeader(string name, string value) 
         {
             _restRequest.AddHeader(name, value);
+            return this;
+        }
+
+        public RestRequestBuilder WithJsonBody(object body)
+        {
+            var serialized = JsonHelpers.SerializeToJson(body);
+            _restRequest.AddJsonBody(serialized);
             return this;
         }
 
