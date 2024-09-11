@@ -1,0 +1,2 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"Checking if token is proper generated","481","CreateValidToken","","Wed Sep 11 10:20:52 UTC 2024","passed","Wed Sep 11 10:20:52 UTC 2024","","Auth Tests","AuthTests","CreateValidToken"
