@@ -33,7 +33,7 @@ jobs:
         dotnet-version: ${{ env.DOTNET_VERSION }} 
 
     - name: Restore dependencies
-      run: dotnet restore ${{ env.PROJECT_PATH }} /restfulbookers.csproj
+      run: dotnet restore ${{ env.PROJECT_PATH }}/restfulbookers.csproj
 
     - name: Build the solution
       run: dotnet build restfulbookers/restfulbookers/restfulbookers.csproj --configuration Release --no-restore
