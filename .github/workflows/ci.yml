@@ -11,9 +11,17 @@ on:
       - main
       - restfulframework-allure
 
+
+env:
+  DOTNET_VERSION: '8.0'
+  PROJECT_PATH: 'restfulbookers/restfulbookers'
+  REPO_PATH_FOR_ALLURE: 'bin/Debug/net8.0/'
+  
+  
 jobs:
+
   build:
-    runs-on: ubuntu-latest  # Można też wybrać windows-latest, ale ubuntu jest szybsze
+    runs-on: ubuntu-latest
 
     steps:
     - name: Checkout the repository
@@ -22,10 +30,10 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: '8.x'  # Zmieniaj na odpowiednią wersję .NET, np. '6.x' jeśli używasz .NET 6
+        dotnet-version: $DOTNET_VERSION
 
     - name: Restore dependencies
-      run: dotnet restore restfulbookers/restfulbookers/restfulbookers.csproj
+      run: dotnet restore $PROJECT_PATH/restfulbookers.csproj
 
     - name: Build the solution
       run: dotnet build restfulbookers/restfulbookers/restfulbookers.csproj --configuration Release --no-restore
