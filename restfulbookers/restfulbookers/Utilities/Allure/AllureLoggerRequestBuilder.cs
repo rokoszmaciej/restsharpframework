@@ -31,11 +31,15 @@ namespace RestfulBookerTestFramework.Utilities.Allure
 
         public AllureLoggerRequestBuilder WithBody(RestRequest request)
         {
-            var bodyParam = JsonHelpers.SerializeToJson(
-                request.Parameters.FirstOrDefault(x => x.Type == ParameterType.RequestBody).Value);
+            var bodyParam = request.Parameters.FirstOrDefault(x => x.Type == ParameterType.RequestBody);
+
             if (bodyParam != null)
             {
-                allureParams.Add(new Parameter { name = "Body: ", value = bodyParam });
+                allureParams.Add(new Parameter { name = "Body: ", value = JsonHelpers.SerializeToJson(bodyParam.Value) });
+            }
+            else
+            {
+                allureParams.Add(new Parameter { name = "Body: ", value = string.Empty });
             }
             return this;
         }
