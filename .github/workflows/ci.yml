@@ -22,7 +22,7 @@ jobs:
 
   build:
     runs-on: ubuntu-latest
-
+    
     steps:
     - name: Checkout the repository
       uses: actions/checkout@v3
@@ -36,25 +36,18 @@ jobs:
       run: dotnet restore ${{ env.PROJECT_PATH }}/restfulbookers.csproj
 
     - name: Build the solution
-      run: dotnet build restfulbookers/restfulbookers/restfulbookers.csproj --configuration Release --no-restore
+      run: dotnet build ${{ env.PROJECT_PATH }}/restfulbookers.csproj --configuration Release --no-restore
 
-    # Step 5: Run tests and generate NUnit XML results
+  tests:
+    runs-on: ubuntu-latest
+    
+    steps:
     - name: Run tests and generate NUnit XML results
-      run: dotnet test restfulbookers/restfulbookers/restfulbookers.csproj --logger "nunit;LogFilePath=bin/Debug/net8.0/allure-results/TestResults.xml" --verbosity detailed
+      run: dotnet test ${{ env.PROJECT_PATH }}/restfulbookers.csproj --logger "nunit;LogFilePath=${{ env.REPO_PATH_FOR_ALLURE }}/allure-results/TestResults.xml" --verbosity detailed
 
-    - name: List all files after tests
-      run: find . -name "*.xml" -o -name "*.trx" -o -name "*.json"
-
-
-    # Step 6: List the files in allure-results for debugging
-    - name: List files in allure-results directory
-      run: ls -la restfulbookers/restfulbookers/bin/Debug/net8.0/allure-results
-
-    # Step 7: Display the contents of TestResults.xml (for debugging)
-    - name: Display TestResults.xml
-      run: cat restfulbookers/restfulbookers/bin/Debug/net8.0/allure-results/TestResults.xml
-
-    # Step 8: Instalacja Allure za pomocą repozytorium Maven Central
+  allure-report:
+    runs-on: ubuntu-latest
+    steps:
     - name: Install Allure
       run: |
         sudo apt-get update
@@ -63,17 +56,11 @@ jobs:
         unzip allure-commandline-2.30.0.zip -d /opt/allure
         sudo ln -s /opt/allure/allure-2.30.0/bin/allure /usr/bin/allure
         
-    # Step 9: Generate Allure Report from allure-results directory
     - name: Generate Allure Report
-      run: allure generate restfulbookers/restfulbookers/bin/Debug/net8.0/allure-results --clean -o restfulbookers/restfulbookers/bin/Debug/net8.0/allure-report
+      run: allure generate ${{ env.PROJECT_PATH }}/${{ env.REPO_PATH_FOR_ALLURE }}/allure-results --clean -o ${{ env.PROJECT_PATH }}/${{ env.REPO_PATH_FOR_ALLURE }}/allure-report
 
-    # Step to list files in allure-report directory
-    - name: List files in allure-report directory
-      run: ls -la restfulbookers/restfulbookers/bin/Debug/net8.0/allure-report
-
-    # Step 10: Deploy Allure Report to GitHub Pages
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: restfulbookers/restfulbookers/bin/Debug/net8.0/allure-report
+        publish_dir: ${{ env.PROJECT_PATH }}/${{ env.REPO_PATH_FOR_ALLURE }}/allure-report
