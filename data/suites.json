@@ -1,1 +1,1 @@
-{"uid":"98d3104e051c652961429bf95fa0b5d6","children":[{"name":"Auth Tests","children":[{"name":"CreateValidToken","uid":"464705d0412190b4","parentUid":"37396378f266b3670011fb66c48ab3d6","status":"passed","time":{"start":1726057268044,"stop":1726057271620,"duration":3576},"flaky":false,"newFailed":false,"newPassed":false,"newBroken":false,"retriesCount":0,"retriesStatusChange":false,"parameters":[],"tags":["Smoke"]}],"uid":"37396378f266b3670011fb66c48ab3d6"}],"name":"suites"}
+{"uid":"98d3104e051c652961429bf95fa0b5d6","children":[],"name":"suites"}
