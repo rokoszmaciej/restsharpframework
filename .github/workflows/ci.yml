@@ -67,7 +67,7 @@ jobs:
       run: allure generate restfulbookers/restfulbookers/bin/Debug/net8.0/allure-results --clean -o restfulbookers/restfulbookers/bin/Debug/net8.0/allure-report
 
     - name: List files in the allure-results directory
-      run: ls -la allure-report
+      run: ls -la restfulbookers/restfulbookers/bin/Debug/net8.0/allure-report
       
     - name: Upload Allure Report
       uses: actions/upload-artifact@v3
