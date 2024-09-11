@@ -44,7 +44,7 @@ jobs:
 
     # Step 7: Display the contents of TestResults.xml (for debugging)
     - name: Display TestResults.xml
-      run: cat restfulbookers/restfulbookers/bin/Debug/net8.0/test-results/TestResults.xml
+      run: cat restfulbookers/restfulbookers/bin/Debug/net8.0/allure-results/TestResults.xml
 
     # Step 8: Instalacja Allure za pomocą repozytorium Maven Central
     - name: Install Allure
