@@ -30,10 +30,10 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: ${DOTNET_VERSION}
+        dotnet-version: ${{ env.DOTNET_VERSION }} 
 
     - name: Restore dependencies
-      run: dotnet restore $PROJECT_PATH/restfulbookers.csproj
+      run: dotnet restore ${{ env.PROJECT_PATH }} /restfulbookers.csproj
 
     - name: Build the solution
       run: dotnet build restfulbookers/restfulbookers/restfulbookers.csproj --configuration Release --no-restore
