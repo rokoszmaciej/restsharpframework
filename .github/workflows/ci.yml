@@ -32,7 +32,10 @@ jobs:
 
     - name: Run tests and generate NUnit XML results
       run: dotnet test restfulbookers/restfulbookers/restfulbookers.csproj --logger "nunit;LogFilePath=restfulbookers/restfulbookers/bin/Debug/net8.0/allure-results/TestResults.xml"
-        
+
+    - name: Display TestResults.xml
+      run: cat restfulbookers/restfulbookers/bin/Debug/net8.0/allure-results/TestResults.xml
+
     # Instalacja Allure za pomocą repozytorium Maven Central
     - name: Install Allure
       run: |
@@ -49,8 +52,19 @@ jobs:
         # Tutaj używamy allure-nunitxml-adapter do przetworzenia wyników XML na JSON
         allure generate restfulbookers/restfulbookers/bin/Debug/net8.0/allure-results --clean -o restfulbookers/restfulbookers/bin/Debug/net8.0/allure-report
 
+    - name: Generate Allure Report
+      run: allure generate restfulbookers/restfulbookers/bin/Debug/net8.0/allure-results --clean -o restfulbookers/restfulbookers/bin/Debug/net8.0/allure-report --verbose
+
+    - name: List files in allure-report directory
+      run: ls -la restfulbookers/restfulbookers/bin/Debug/net8.0/allure-report
+  
     - name: List files in allure-results directory
       run: ls -la restfulbookers/restfulbookers/bin/Debug/net8.0/allure-results
+
+    - name: List and display JSON files in allure-results
+      run: |
+        ls -la restfulbookers/restfulbookers/bin/Debug/net8.0/allure-results
+        cat restfulbookers/restfulbookers/bin/Debug/net8.0/allure-results/*.json
       
     - name: Upload Allure Report
       uses: actions/upload-artifact@v3
