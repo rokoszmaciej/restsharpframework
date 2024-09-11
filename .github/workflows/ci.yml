@@ -59,13 +59,9 @@ jobs:
     - name: Generate Allure Report
       run: allure generate restfulbookers/restfulbookers/bin/Debug/net8.0/allure-results --clean -o restfulbookers/restfulbookers/bin/Debug/net8.0/allure-report
 
-    # Step 10: List files in allure-report directory for debugging
-    - name: List files in allure-report directory
-      run: ls -la restfulbookers/restfulbookers/bin/Debug/net8.0/allure-report
-
-    # Step 11: Upload Allure Report as an artifact
-    - name: Upload Allure Report
-      uses: actions/upload-artifact@v3
+    # Step 10: Deploy Allure Report to GitHub Pages
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
       with:
-        name: allure-report
-        path: restfulbookers/restfulbookers/bin/Debug/net8.0/allure-report
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./allure-report
