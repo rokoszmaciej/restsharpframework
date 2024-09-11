@@ -30,13 +30,19 @@ jobs:
     - name: Build the solution
       run: dotnet build restfulbookers/restfulbookers/restfulbookers.csproj --configuration Release --no-restore
 
+    # Step 5: Run tests and generate NUnit XML results
     - name: Run tests and generate NUnit XML results
       run: dotnet test restfulbookers/restfulbookers/restfulbookers.csproj --logger "nunit;LogFilePath=restfulbookers/restfulbookers/bin/Debug/net8.0/allure-results/TestResults.xml"
 
+    # Step 6: List the files in allure-results for debugging
+    - name: List files in allure-results directory
+      run: ls -la restfulbookers/restfulbookers/bin/Debug/net8.0/allure-results
+
+    # Step 7: Display the contents of TestResults.xml (for debugging)
     - name: Display TestResults.xml
       run: cat restfulbookers/restfulbookers/bin/Debug/net8.0/allure-results/TestResults.xml
 
-    # Instalacja Allure za pomocą repozytorium Maven Central
+    # Step 8: Instalacja Allure za pomocą repozytorium Maven Central
     - name: Install Allure
       run: |
         sudo apt-get update
@@ -45,27 +51,15 @@ jobs:
         unzip allure-commandline-2.30.0.zip -d /opt/allure
         sudo ln -s /opt/allure/allure-2.30.0/bin/allure /usr/bin/allure
         
-    # Convert NUnit XML to Allure format using allure-nunitxml-adapter
-    - name: Convert NUnit XML to Allure
-      run: |
-        # Załaduj adapter do przetwarzania NUnit XML na dane Allure
-        # Tutaj używamy allure-nunitxml-adapter do przetworzenia wyników XML na JSON
-        allure generate restfulbookers/restfulbookers/bin/Debug/net8.0/allure-results --clean -o restfulbookers/restfulbookers/bin/Debug/net8.0/allure-report
-
+    # Step 9: Generate Allure Report from allure-results directory
     - name: Generate Allure Report
-      run: allure generate restfulbookers/restfulbookers/bin/Debug/net8.0/allure-results --clean -o restfulbookers/restfulbookers/bin/Debug/net8.0/allure-report --verbose
+      run: allure generate restfulbookers/restfulbookers/bin/Debug/net8.0/allure-results --clean -o restfulbookers/restfulbookers/bin/Debug/net8.0/allure-report
 
+    # Step 10: List files in allure-report directory for debugging
     - name: List files in allure-report directory
       run: ls -la restfulbookers/restfulbookers/bin/Debug/net8.0/allure-report
-  
-    - name: List files in allure-results directory
-      run: ls -la restfulbookers/restfulbookers/bin/Debug/net8.0/allure-results
 
-    - name: List and display JSON files in allure-results
-      run: |
-        ls -la restfulbookers/restfulbookers/bin/Debug/net8.0/allure-results
-        cat restfulbookers/restfulbookers/bin/Debug/net8.0/allure-results/*.json
-      
+    # Step 11: Upload Allure Report as an artifact
     - name: Upload Allure Report
       uses: actions/upload-artifact@v3
       with:
