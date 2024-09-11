@@ -1,1 +1,1 @@
-{"uid":"83edc06c07f9ae9e47eb6dd1b683e4e2","children":[],"name":"packages"}
+{"uid":"83edc06c07f9ae9e47eb6dd1b683e4e2","children":[{"name":"RestfulBookerTestFramework.Tests","children":[{"name":"CreateValidToken","uid":"464705d0412190b4","parentUid":"d7e9fd6f06265fade78d337267c755de","status":"passed","time":{"start":1726057268044,"stop":1726057271620,"duration":3576},"flaky":false,"newFailed":false,"newPassed":false,"newBroken":false,"retriesCount":0,"retriesStatusChange":false,"parameters":[],"tags":["Smoke"]}],"uid":"RestfulBookerTestFramework.Tests"}],"name":"packages"}
