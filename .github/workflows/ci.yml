@@ -31,7 +31,8 @@ jobs:
       run: dotnet build restfulbookers/restfulbookers/restfulbookers.csproj --configuration Release --no-restore
 
     - name: Run tests and generate test results
-      run: dotnet test restfulbookers/restfulbookers/restfulbookers.csproj --logger "nunit;LogFilePath=bin/Debug/net8.0/TestResults.xml" --results-directory restfulbookers/restfulbookers/bin/Debug/net8.0/allure-results
+      run: dotnet test restfulbookers/restfulbookers/restfulbookers.csproj --logger "Allure" --results-directory restfulbookers/restfulbookers/bin/Debug/net8.0/allure-results
+
       
     - name: List files in the restfulbookers/restfulbookers directory
       run: ls -la restfulbookers/restfulbookers
@@ -53,22 +54,10 @@ jobs:
         unzip allure-commandline-2.30.0.zip -d /opt/allure
         sudo ln -s /opt/allure/allure-2.30.0/bin/allure /usr/bin/allure
         
-    - name: List files in the restfulbookers/restfulbookers directory
-      run: ls -la restfulbookers/restfulbookers
-      
-    - name: List files in the allure-results directory
-      run: ls -la allure-results
-      
-    - name: List all files to locate allure-results
-      run: find . -name "allure-results"
-
-    # Generowanie raportu Allure
+    # Generate Allure Report from allure-results directory
     - name: Generate Allure Report
       run: allure generate restfulbookers/restfulbookers/bin/Debug/net8.0/allure-results --clean -o restfulbookers/restfulbookers/bin/Debug/net8.0/allure-report
 
-    - name: List files in the allure-results directory
-      run: ls -la restfulbookers/restfulbookers/bin/Debug/net8.0/allure-report
-      
     - name: Upload Allure Report
       uses: actions/upload-artifact@v3
       with:
