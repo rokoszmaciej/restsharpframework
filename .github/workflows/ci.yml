@@ -30,8 +30,8 @@ jobs:
     - name: Build the solution
       run: dotnet build restfulbookers/restfulbookers/restfulbookers.csproj --configuration Release --no-restore
 
-    - name: Run tests and generate test results
-      run: dotnet test restfulbookers/restfulbookers/restfulbookers.csproj --logger "Allure" --results-directory restfulbookers/restfulbookers/bin/Debug/net8.0/allure-results
+    - name: Run tests and generate NUnit XML results
+      run: dotnet test restfulbookers/restfulbookers/restfulbookers.csproj --logger "nunit;LogFilePath=restfulbookers/restfulbookers/bin/Debug/net8.0/allure-results/TestResults.xml"
 
       
     - name: List files in the restfulbookers/restfulbookers directory
