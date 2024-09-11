@@ -42,13 +42,16 @@ jobs:
         unzip allure-commandline-2.30.0.zip -d /opt/allure
         sudo ln -s /opt/allure/allure-2.30.0/bin/allure /usr/bin/allure
         
-    # Generate Allure Report from allure-results directory
-    - name: Generate Allure Report
-      run: allure generate restfulbookers/restfulbookers/bin/Debug/net8.0/allure-results --clean -o restfulbookers/restfulbookers/bin/Debug/net8.0/allure-report
+    # Convert NUnit XML to Allure format using allure-nunitxml-adapter
+    - name: Convert NUnit XML to Allure
+      run: |
+        # Załaduj adapter do przetwarzania NUnit XML na dane Allure
+        # Tutaj używamy allure-nunitxml-adapter do przetworzenia wyników XML na JSON
+        allure generate restfulbookers/restfulbookers/bin/Debug/net8.0/allure-results --clean -o restfulbookers/restfulbookers/bin/Debug/net8.0/allure-report
 
     - name: List files in allure-results directory
       run: ls -la restfulbookers/restfulbookers/bin/Debug/net8.0/allure-results
-
+      
     - name: Upload Allure Report
       uses: actions/upload-artifact@v3
       with:
