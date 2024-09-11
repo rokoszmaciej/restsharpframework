@@ -1,3 +1,4 @@
 "DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
-"Checking if token is proper generated","77","CreateValidToken","","Wed Sep 11 13:16:18 UTC 2024","passed","Wed Sep 11 13:16:18 UTC 2024","","Auth Tests","AuthTests","CreateValidToken"
-"A simple health check endpoint to confirm whether the API is up and running","282","HealthCheck","","Wed Sep 11 13:16:18 UTC 2024","passed","Wed Sep 11 13:16:18 UTC 2024","","Health check tests","PingTests","HealthCheck"
+"Checking if token is proper generated","56","CreateValidToken","","Wed Sep 11 16:31:39 UTC 2024","passed","Wed Sep 11 16:31:39 UTC 2024","","Auth Tests","AuthTests","CreateValidToken"
+"A simple health check endpoint to confirm whether the API is up and running","43","HealthCheck","","Wed Sep 11 16:31:39 UTC 2024","passed","Wed Sep 11 16:31:39 UTC 2024","","Health check tests","PingTests","HealthCheck"
+"Checking if booking is proper generated","343","CreateBooking","","Wed Sep 11 16:31:39 UTC 2024","passed","Wed Sep 11 16:31:39 UTC 2024","","Booking Tests","BookingTests","CreateBooking"
