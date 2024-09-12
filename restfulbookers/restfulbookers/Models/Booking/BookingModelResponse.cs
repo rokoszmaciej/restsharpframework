@@ -4,7 +4,7 @@ namespace restfulbookers.Models.Booking
 {
    public class BookingModelResponse
     {
-        [JsonProperty("fbookingId")]
+        [JsonProperty("bookingId")]
         public int bookingId {  get; set; }
 
         public BookingModel booking { get; set; }

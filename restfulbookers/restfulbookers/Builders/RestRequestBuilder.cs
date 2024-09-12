@@ -23,6 +23,12 @@ namespace RestfulBookerTestFramework.Builders
             return this;
         }
 
+        public RestRequestBuilder WithUrlSegment(string parameter, string value)
+        {
+            _restRequest.AddUrlSegment(parameter, value);
+            return this;
+        }
+
         public RestRequestBuilder WithMethod(Method method) 
         {
             _restRequest.Method = method;
