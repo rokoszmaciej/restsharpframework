@@ -83,8 +83,8 @@ namespace restfulbookers.Tests
                     .Build();
 
             var updateBookingResponse = await bookingController.UpdateBooking(updatedBooking, token, createdBookingId);
-
-            updateBookingResponse.Should().BeEquivalentTo(updatedBooking);
+            var deserializedResponse = ApiResponseHandler.DeserializeResponseJson<BookingModel>(updateBookingResponse);
+            deserializedResponse.Should().BeEquivalentTo(updatedBooking);
             updateBookingResponse.ResponseStatusCode().Should().Be(HttpStatusCode.OK);
         }
 
