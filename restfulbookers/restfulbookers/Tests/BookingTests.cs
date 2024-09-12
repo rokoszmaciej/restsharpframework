@@ -145,6 +145,36 @@ namespace restfulbookers.Tests
 
             var deleteBookingResponse = await bookingController.DeleteBooking(token, createdBookingId);
             deleteBookingResponse.ResponseStatusCode().Should().Be(HttpStatusCode.Created);
+
+            var bookingResponse = await bookingController.GetBooking(createdBookingId);
+            bookingResponse.ResponseStatusCode().Should().Be(HttpStatusCode.NotFound);
+        }
+
+        [Test]
+        [AllureSeverity(SeverityLevel.normal)]
+        [AllureDescription("Checking if booking is return")]
+        [AllureStep("Get booking")]
+        public async Task GetBooking()
+        {
+            var validUserCredentials = ConfigurationProvider.GetTestConfiguration();
+            var authorizationModel = new AuthorizationBuilder()
+                .WithUserName(validUserCredentials.Username)
+                .WithPassword(validUserCredentials.Password)
+                .Build();
+
+            var authResponse = await authController.CreateToken(authorizationModel);
+            var token = ApiResponseHandler.DeserializeResponseJson<TokenModel>(authResponse).Token;
+
+            var booking = ConfigurationProvider.GetBookingData();
+
+            var createBookingResponse = await bookingController.CreateBooking(booking);
+            var deserializedCreatedBookingResponse = ApiResponseHandler.DeserializeResponseJson<BookingModel>(createBookingResponse);
+            var createdBookingId = ApiResponseHandler.DeserializeResponseJson<BookingModelResponse>(createBookingResponse).bookingId;
+
+            var bookingResponse = await bookingController.GetBooking(createdBookingId);
+            var deserializedBookingResponse = ApiResponseHandler.DeserializeResponseJson<BookingModel>(createBookingResponse);
+            bookingResponse.ResponseStatusCode().Should().Be(HttpStatusCode.OK);
+            deserializedBookingResponse.Should().BeEquivalentTo(deserializedCreatedBookingResponse);
         }
 
         [TearDown]

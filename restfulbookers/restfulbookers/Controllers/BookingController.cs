@@ -57,7 +57,7 @@ namespace restfulbookers.Controllers
                 .WithMethod(Method.Patch)
                 .WithHeader(KnownHeaders.Accept, ContentType.Json)
                 .WithHeader(KnownHeaders.ContentType, ContentType.Json)
-                .WithHeader(KnownHeaders.Cookie, $"token={token}1")
+                .WithHeader(KnownHeaders.Cookie, $"token={token}")
                 .WithJsonBody(booking)
                 .Build();
 
@@ -74,6 +74,20 @@ namespace restfulbookers.Controllers
                 .WithMethod(Method.Delete)
                 .WithHeader(KnownHeaders.ContentType, ContentType.Json)
                 .WithHeader(KnownHeaders.Cookie, $"token={token}")
+                .Build();
+
+            var response = await _client.ExecuteRequest(request);
+            return response;
+        }
+
+        public async Task<RestResponse> GetBooking(int bookingId)
+        {
+            AllureUtilities.StartStepExecution(nameof(GetBooking));
+
+            var request = new RestRequestBuilder()
+                .WithResource($"{_Path}/{bookingId}")
+                .WithMethod(Method.Get)
+                .WithHeader(KnownHeaders.Accept, ContentType.Json)
                 .Build();
 
             var response = await _client.ExecuteRequest(request);
