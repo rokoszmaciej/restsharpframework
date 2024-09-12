@@ -50,14 +50,14 @@ namespace restfulbookers.Controllers
 
         public async Task<RestResponse> PartialUpdateBooking(BookingModel booking, string token, int bookingId)
         {
-            AllureUtilities.StartStepExecution(nameof(UpdateBooking));
+            AllureUtilities.StartStepExecution(nameof(PartialUpdateBooking));
 
             var request = new RestRequestBuilder()
                 .WithResource($"{_Path}/{bookingId}")
                 .WithMethod(Method.Patch)
                 .WithHeader(KnownHeaders.Accept, ContentType.Json)
                 .WithHeader(KnownHeaders.ContentType, ContentType.Json)
-                .WithHeader(KnownHeaders.Cookie, $"token={token}")
+                .WithHeader(KnownHeaders.Cookie, $"token={token}1")
                 .WithJsonBody(booking)
                 .Build();
 
